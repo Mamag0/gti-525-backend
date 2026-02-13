@@ -25,30 +25,6 @@ def ensure_schema() -> None:
         conn.commit()
 
 
-def fetch_comptage_velo(limit: int = 100, offset: int = 0) -> list[dict[str, object]]:
-    ensure_schema()
-    with get_connection() as conn:
-        rows: Sequence[sqlite3.Row] = conn.execute(
-            """
-            SELECT id, date_heure, id_compteur, nb_passages
-            FROM comptage_velo
-            ORDER BY id
-            LIMIT ? OFFSET ?
-            """,
-            (limit, offset),
-        ).fetchall()
-
-    return [dict(row) for row in rows]
-
-
-def count_comptage_velo() -> int:
-    ensure_schema()
-    with get_connection() as conn:
-        row = conn.execute("SELECT COUNT(*) AS total FROM comptage_velo").fetchone()
-
-    return int(row["total"]) if row else 0
-
-
 def fetch_compteur_period(id_compteur: int, debut_iso: str, fin_iso: str) -> list[dict[str, object]]:
     ensure_schema()
     with get_connection() as conn:

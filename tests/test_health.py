@@ -15,19 +15,6 @@ def test_health_check() -> None:
     assert response.json() == {"status": "ok"}
 
 
-def test_comptage_velo_empty_db_returns_no_items(tmp_path: Path, monkeypatch) -> None:
-    db_path = tmp_path / "test.db"
-    monkeypatch.setattr(settings, "SQLITE_DB_PATH", str(db_path))
-    ensure_schema()
-
-    response = client.get("/gti525/v1/comptage-velo?limit=10&offset=0")
-
-    assert response.status_code == 200
-    assert response.json()["total"] == 0
-    assert response.json()["count"] == 0
-    assert response.json()["items"] == []
-
-
 def test_compteur_period_route_shape(tmp_path: Path, monkeypatch) -> None:
     db_path = tmp_path / "test.db"
     monkeypatch.setattr(settings, "SQLITE_DB_PATH", str(db_path))
