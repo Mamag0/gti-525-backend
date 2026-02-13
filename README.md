@@ -25,30 +25,6 @@ copy .env.example .env
 uvicorn app.main:app --reload
 ```
 
-## Fichiers d'entree
-
-Par defaut, les endpoints de fichiers lisent dans `public/input`:
-
-- `reseau_cyclable.geojson` pour `GET /gti525/v1/pistes`
-- `fontaines.csv` pour `GET /gti525/v1/pointsdinteret`
-
-Tu peux changer le dossier via `INPUT_DATA_DIR` dans `.env`.
-
-## Import des CSV dans SQLite
-
-Place les fichiers CSV (`comptage_velo_*.csv`) a la racine du projet puis execute:
-
-```powershell
-python import_sqlite.py
-```
-
-Si tes CSV sont ailleurs (ex: `..\lab2_input\livrable2`), execute:
-
-```powershell
-python import_sqlite.py --input-dir ..\lab2_input\livrable2 --db-path comptage_velo.db
-```
-
-Cela cree/remplit `comptage_velo.db`.
 
 ## Endpoints
 
