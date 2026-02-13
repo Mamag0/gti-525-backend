@@ -1,4 +1,4 @@
-﻿# FastAPI Backend Starter (Pro)
+﻿# FastAPI Backend GTI525
 
 ## Structure
 
@@ -10,6 +10,10 @@
 - `import_sqlite.py` import CSV -> SQLite
 - `app/core/config.py` settings
 - `tests/` tests API
+
+## Run via docker
+
+simplement ```docker compose up --build```
 
 ## Run local
 
